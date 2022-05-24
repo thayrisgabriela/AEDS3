@@ -13,7 +13,7 @@ public class ObjetoLista {
             quantIds++;
         }
     }
-
+    
     ObjetoLista(String palavra, String id){
         this.palavra = palavra;
         this.ids[0] = id;
