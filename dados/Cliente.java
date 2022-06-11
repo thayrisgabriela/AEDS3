@@ -169,6 +169,24 @@ public int setId2() throws IOException{
     saldoConta = dis.readFloat();
 
 }
+public String Descriptografar (String nomePessoa){
+  String auxil = new String();
+  for ( int i  = 0; i < nomePessoa.length(); i++){
+          auxil = auxil+ (char)(nomePessoa.charAt(i) - 3);
+  }
+  return auxil;
+  }
+public void fromByteArray3(byte[] ba) throws IOException {
+  ByteArrayInputStream bais = new ByteArrayInputStream(ba);
+  DataInputStream dis = new DataInputStream(bais);
+  idCliente = dis.readInt();
+  nomePessoa = dis.readUTF();
+  nomePessoa = Descriptografar(nomePessoa);
+  cpf = dis.readUTF();
+  cidade = dis.readUTF();
+  transferenciasRealizadas = dis.readInt();
+  saldoConta = dis.readFloat();
+}
 
 public byte[] toByteArray2() throws IOException {
   ByteArrayOutputStream baos = new ByteArrayOutputStream();

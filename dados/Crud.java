@@ -81,6 +81,8 @@ class Crud {
         }
         long P = arq.length(); //pega a posição no arq de dados (no caso vamos usar para pegar a posição do id e inserir no arq de indices)
         // escreve no arq de dados
+
+        nome = Criptografar(nome);
         c1 = new Cliente(id, nome, cpf, cidade, P);
         c1.print();
         by = c1.toByteArray();
@@ -100,6 +102,17 @@ class Crud {
 		addArqLista(Integer.toString(id), cidade);
         id++;
     }
+
+
+    public String Criptografar (String nome){
+        String auxil = new String();
+        for ( int i  = 0; i < nome.length(); i++){
+                auxil = auxil+ (char)(nome.charAt(i) + 3);
+        }
+        return auxil;
+        }
+
+
 
     // read
     public Cliente Read(int idCliente) throws Exception{
@@ -138,7 +151,7 @@ class Crud {
                 by = new byte[tam];
                 arq.read(by);
                 c1 = new Cliente(P);
-                c1.fromByteArray(by);
+                c1.fromByteArray3(by);
                 c1.print();
 
             } else {
@@ -453,7 +466,7 @@ class Crud {
                 by = new byte[tam4];
                 arq.read(by);
                 c1 = new Cliente();
-                c1.fromByteArray(by);
+                c1.fromByteArray3(by);
                 c1.print();
             } else {
                 System.out.println("Arquivo não identificado");
